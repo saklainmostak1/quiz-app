@@ -3,6 +3,7 @@ import "./App.css";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 
+
 const questions = [
   {
     questionText: "Qual o idiomafalado no Brasil?",
@@ -67,19 +68,21 @@ function App() {
   }
   
   console.log(questions.isCorrect)
-  const now = score;
-  const then = wrong;
+  const totalScore = score;
+  const WrongScore = wrong;
 
   return (
    <div>
-  
-    <div className="d-flex">
-      <h1>Correct Ans</h1>
-    <ProgressBar now={now} label={`${now} / ${questions.length} `} />
-    <h1>Correct Ans In %</h1>
-    <ProgressBar now={now} label={`${now / questions.length * 100}`} />
-    <h1>Wrong Ans</h1>
-    <ProgressBar now={then} label={`${then} / ${questions.length}`} />
+ 
+    <div className="bar">
+    
+    <ProgressBar totalScore={totalScore} label={`${totalScore} / ${questions.length} `} />
+    <button> <ProgressBar  totalScore={totalScore} label={`${totalScore / questions.length * 100}`} /></button>
+      
+      
+    {/* <ProgressBar totalScore={totalScore} label={`${totalScore / questions.length * 100}`} /> className="scpercentage"*/}
+   
+    <ProgressBar totalScore={WrongScore} label={`${WrongScore} / ${questions.length}`} />
     </div>
      <div className="app">
     

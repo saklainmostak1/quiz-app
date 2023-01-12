@@ -11,6 +11,26 @@ body {
   align-items: center;
   min-height: 100vh;
 }
+.bar{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+ 
+}
+.bar button{
+ width: 30px;
+ height: 30px;
+ border: none;
+ border-radius: 50%;
+}
+.scpercentage{
+ 
+ background-color: black;
+ width: 40px;
+ height: 40px;
+ border: 1px solid black;
+border-radius: 50px;
+}
 
 .app {
   background-color: #252d4a;
