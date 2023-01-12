@@ -1,6 +1,7 @@
 import { useState } from "react";
-import "./App.css";
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import "./App.css";
+
 
 
 
@@ -52,10 +53,10 @@ function App() {
 
   function handleAnswer(isCorrect) {
     if (isCorrect) {
-      
+
       setScore(score + 1);
     }
-    else{
+    else {
       setWrong(wrong + 1)
     }
 
@@ -66,57 +67,60 @@ function App() {
       setShowScore(true);
     }
   }
-  
+
   console.log(questions.isCorrect)
   const totalScore = score;
   const WrongScore = wrong;
 
   return (
-   <div>
- 
-    <div className="bar">
-    
-    <ProgressBar totalScore={totalScore} label={`${totalScore} / ${questions.length} `} />
-    <button> <ProgressBar  totalScore={totalScore} label={`${totalScore / questions.length * 100}`} /></button>
-      
-      
-    {/* <ProgressBar totalScore={totalScore} label={`${totalScore / questions.length * 100}`} /> className="scpercentage"*/}
-   
-    <ProgressBar totalScore={WrongScore} label={`${WrongScore} / ${questions.length}`} />
-    </div>
-     <div className="app">
-    
-      {showScore ? (
-        <div className="score-section">
-          Você pontuou {score} de {questions.length}
-        </div>
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-count">
-              <span>Questão {currentQuestion + 1}</span>/{questions.length}
-            </div>
-            <div className="question-text">
-              {questions[currentQuestion].questionText}
-            </div>
-          </div>
+    <div>
 
-          <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map(
-              (answerOption, index) => (
-                <button
-                  onClick={() => handleAnswer(answerOption.isCorrect)}
-                  key={index}
-                >
-                  {answerOption.answerText}
-                </button>
-              )
-            )}
+      <div className="bar">
+        <div>
+          <ProgressBar  variant="success" now={totalScore * 25}  />
+          <p>{`${totalScore} / ${questions.length} `}</p>
+        </div>
+        <div>
+          <button >{`${totalScore / questions.length * 100}`}</button>
+        </div>
+        <div>
+          <ProgressBar variant="danger" now={WrongScore * 25} />
+          <p>{`${WrongScore} / ${questions.length}`}</p>
+        </div>
+      </div>
+
+      <div className="app">
+        {showScore ? (
+          <div className="score-section">
+            Você pontuou {score} de {questions.length}
           </div>
-        </>
-      )}
+        ) : (
+          <>
+            <div className="question-section">
+              <div className="question-count">
+                <span>Questão {currentQuestion + 1}</span>/{questions.length}
+              </div>
+              <div className="question-text">
+                {questions[currentQuestion].questionText}
+              </div>
+            </div>
+
+            <div className="answer-section">
+              {questions[currentQuestion].answerOptions.map(
+                (answerOption, index) => (
+                  <button
+                    onClick={() => handleAnswer(answerOption.isCorrect)}
+                    key={index}
+                  >
+                    {answerOption.answerText}
+                  </button>
+                )
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
-   </div>
   );
 }
 
